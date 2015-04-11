@@ -1,17 +1,27 @@
 package com.herokuapp.ezhao.tips;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.herokuapp.ezhao.tips.fragments.BillEntryFragment;
+
 
 public class MainActivity extends ActionBarActivity {
+    private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.flFragment, new BillEntryFragment());
+        ft.commit();
     }
 
 
