@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/tvBillAmountLabel"
-        android:textSize="16sp"
         android:text="@string/enter_bill_amount"
+        style="@style/TextLabel"
         android:layout_above="@+id/tvBillAmount"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/tvBillAmount"
-        android:textSize="32sp"
+        style="@style/TextAmount"
         android:hint="@string/bill_amount_hint"
         android:layout_centerInParent="true"
         android:gravity="center"

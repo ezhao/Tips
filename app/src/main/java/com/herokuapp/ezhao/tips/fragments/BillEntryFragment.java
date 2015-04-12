@@ -42,6 +42,6 @@ public class BillEntryFragment extends Fragment {
     }
 
     public void setBillAmount(double billAmount) {
-        tvBillAmount.setText(String.valueOf(billAmount));
+        tvBillAmount.setText(String.format("%.2f", billAmount));
     }
 }

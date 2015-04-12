@@ -11,6 +11,7 @@ import android.view.View;
 import com.doomonafireball.betterpickers.numberpicker.NumberPickerBuilder;
 import com.doomonafireball.betterpickers.numberpicker.NumberPickerDialogFragment;
 import com.herokuapp.ezhao.tips.fragments.BillEntryFragment;
+import com.herokuapp.ezhao.tips.fragments.TipResultFragment;
 
 
 public class MainActivity extends ActionBarActivity implements BillEntryFragment.BillEntryListener, NumberPickerDialogFragment.NumberPickerDialogHandler {
@@ -18,6 +19,7 @@ public class MainActivity extends ActionBarActivity implements BillEntryFragment
     private FragmentManager fm;
     private NumberPickerBuilder npb;
     private BillEntryFragment billEntryFragment;
+    private TipResultFragment tipResultFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,9 @@ public class MainActivity extends ActionBarActivity implements BillEntryFragment
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         billEntryFragment = new BillEntryFragment();
-        ft.replace(R.id.flFragment, billEntryFragment);
+        tipResultFragment = new TipResultFragment();
+        tipResultFragment.setBill(12.24);
+        ft.replace(R.id.flFragment, tipResultFragment);
         ft.commit();
 
         npb = new NumberPickerBuilder()
