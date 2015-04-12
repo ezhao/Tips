@@ -27,6 +27,7 @@
             android:id="@+id/tvTipAmountLabel"
             android:text="@string/tip_amount_label"
             style="@style/TextLabel"
+            android:layout_marginTop="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -40,6 +41,7 @@
             android:id="@+id/tvTipAndBillLabel"
             android:text="@string/tip_and_bill_label"
             style="@style/TextLabel"
+            android:layout_marginTop="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

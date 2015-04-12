@@ -1,5 +1,8 @@
 package com.herokuapp.ezhao.tips.fragments;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.herokuapp.ezhao.tips.R;
@@ -21,6 +25,7 @@ public class BillEntryFragment extends Fragment {
     private double billAmount;
     @InjectView(R.id.tvBillAmount) TextView tvBillAmount;
     @InjectView(R.id.btnNext) Button btnNext;
+    @InjectView(R.id.btnCircle) ImageButton btnCircle;
 
     public interface BillEntryListener {
         public void onBillEntry();
@@ -41,7 +46,7 @@ public class BillEntryFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.rlBillEntryPage)
+    @OnClick({R.id.rlBillEntryPage, R.id.btnCircle})
     public void onBillEntryPageClick(View view) {
         listener.onBillEntry();
     }
@@ -60,8 +65,21 @@ public class BillEntryFragment extends Fragment {
         if (billAmount > 0) {
             tvBillAmount.setText(String.format("%.2f", billAmount));
             btnNext.setEnabled(true);
+            btnCircle.setVisibility(View.INVISIBLE);
         } else {
             btnNext.setEnabled(false);
+            if (btnCircle != null) {
+                ObjectAnimator pulseX = ObjectAnimator.ofFloat(btnCircle, "scaleX", 1.0f, 1.2f);
+                ObjectAnimator pulseY = ObjectAnimator.ofFloat(btnCircle, "scaleY", 1.0f, 1.2f);
+                pulseX.setRepeatMode(ValueAnimator.REVERSE);
+                pulseY.setRepeatMode(ValueAnimator.REVERSE);
+                pulseX.setRepeatCount(ValueAnimator.INFINITE);
+                pulseY.setRepeatCount(ValueAnimator.INFINITE);
+                AnimatorSet pulse = new AnimatorSet();
+                pulse.setDuration(1000);
+                pulse.playTogether(pulseX, pulseY);
+                pulse.start();
+            }
         }
     }
 }

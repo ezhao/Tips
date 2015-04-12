@@ -10,25 +10,37 @@
         android:id="@+id/tvBillAmountLabel"
         android:text="@string/enter_bill_amount"
         style="@style/TextLabel"
-        android:layout_above="@+id/tvBillAmount"
+        android:layout_above="@+id/rlBillAmount"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvBillAmount"
-        style="@style/TextAmount"
+    <RelativeLayout
+        android:id="@+id/rlBillAmount"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageButton
+            android:id="@+id/btnCircle"
+            android:background="@drawable/circle"
+            android:layout_marginTop="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:id="@+id/tvBillAmount"
+            style="@style/TextAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnNext"
         android:text="@string/next"
-        android:layout_below="@id/tvBillAmount"
+        android:layout_below="@id/rlBillAmount"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
