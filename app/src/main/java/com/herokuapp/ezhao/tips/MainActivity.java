@@ -29,15 +29,14 @@ public class MainActivity extends ActionBarActivity implements BillEntryFragment
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         billEntryFragment = new BillEntryFragment();
-        tipResultFragment = new TipResultFragment();
-        tipResultFragment.setBill(12.24);
-        ft.replace(R.id.flFragment, tipResultFragment);
+        ft.replace(R.id.flFragment, billEntryFragment);
         ft.commit();
 
         npb = new NumberPickerBuilder()
                 .setFragmentManager(fm)
                 .setStyleResId(R.style.BetterPickersDialogFragment_Light)
-                .setReference(BILL_ENTRY_REFERENCE);
+                .setReference(BILL_ENTRY_REFERENCE)
+                .setPlusMinusVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -65,6 +64,18 @@ public class MainActivity extends ActionBarActivity implements BillEntryFragment
     @Override
     public void onBillEntry() {
         npb.show();
+    }
+
+    @Override
+    public void onBillNext(double billAmount) {
+        FragmentTransaction ft = fm.beginTransaction();
+        if (tipResultFragment == null) {
+            tipResultFragment = new TipResultFragment();
+        }
+        tipResultFragment.setBill(billAmount);
+        ft.replace(R.id.flFragment, tipResultFragment);
+        ft.addToBackStack("tipResultFragmentTag");
+        ft.commit();
     }
 
     @Override
